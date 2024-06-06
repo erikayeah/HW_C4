@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Arquitectura de Pasarela de Pago</title>
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+</head>
+<body>
+    <h1>Diagrama de Arquitectura de Pasarela de Pago</h1>
+    <div class="mermaid">
+        graph TD
+        Client -->|Realiza compra| Merchant
+        Merchant -->|Envía datos de pago| PaymentGateway
+        PaymentGateway -->|Encripta y envía datos| PaymentProcessor
+        PaymentProcessor -->|Comunica con| CardNetwork
+        CardNetwork -->|Envía solicitud al| IssuingBank
+        IssuingBank -->|Autoriza/Rechaza| CardNetwork
+        CardNetwork -->|Envía respuesta a| PaymentProcessor
+        PaymentProcessor -->|Informa a| PaymentGateway
+        PaymentGateway -->|Notifica a| Merchant
+        Merchant -->|Completa transacción| Client
+
+        style Client fill:#f9f,stroke:#333,stroke-width:4px
+        style Merchant fill:#bbf,stroke:#333,stroke-width:4px
+        style PaymentGateway fill:#bfb,stroke:#333,stroke-width:4px
+        style PaymentProcessor fill:#ffb,stroke:#333,stroke-width:4px
+        style CardNetwork fill:#fbf,stroke:#333,stroke-width:4px
+        style IssuingBank fill:#ffb,stroke:#333,stroke-width:4px
+    </div>
+</body>
+</html>
