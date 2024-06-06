@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diagrama UML de Componentes de Pasarela de Pago</title>
     <!-- Importar Mermaid para generar el diagrama -->
     <script type="module">
-        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        mermaid.initialize({ startOnLoad: true });
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+      mermaid.initialize({ startOnLoad: true });
     </script>
-</head>
-<body>
-     <!--
-    Para visualizar este archivo, abre el proyecto en Visual Studio Code.
-    Instala la extensión Live Server si no la tienes instalada.
-    Haz clic derecho en este archivo y selecciona "Open with Live Server".
+  </head>
+  <body>
+    <!--
+    To view this file, open the project in Visual Studio Code.
+    Install the Live Server extension if you don't have it installed.
+    Right-click on this file and select "Open with Live Server".
     -->
-    
+
     <h1>Diagrama UML de Componentes de Pasarela de Pago</h1>
     <!-- This is a UML class diagram that represents the components of a
     payment gateway system. The diagram shows the interactions between the
@@ -36,52 +36,23 @@
     The `FraudDetectionService` class is responsible for verifying the payment
     for potential fraud. * The `Database` class is responsible for storing the
     payment transaction information.-->
-    
-    <div class="mermaid">
-        classDiagram
-        Client --> UI : interactúa
-        UI --> PaymentController : envía solicitudes de pago
-        PaymentController --> PaymentService : delega lógica de negocio
-        PaymentService --> PaymentProcessor : procesa el pago
-        PaymentProcessor --> BankAPI : comunica con banco
-        PaymentProcessor --> ExternalPaymentAPI : comunica con procesador externo
-        PaymentProcessor --> FraudDetectionService : verifica fraude
-        PaymentService --> Database : guarda información de transacción
 
-        class Client {
-            +RealizaCompra()
-        }
-        class UI {
-            +MostrarFormularioDePago()
-            +MostrarResultado()
-        }
-        class PaymentController {
-            +IniciarPago()
-            +ConfirmarPago()
-        }
-        class PaymentService {
-            +ValidarPago()
-            +ProcesarPago()
-            +GuardarTransacción()
-        }
-        class PaymentProcessor {
-            +AutorizarPago()
-            +ProcesarConBanco()
-            +ProcesarConProcesadorExterno()
-            +VerificarFraude()
-        }
-        class BankAPI {
-            +AutorizarPago()
-        }
-        class ExternalPaymentAPI {
-            +AutorizarPago()
-        }
-        class FraudDetectionService {
-            +VerificarFraude()
-        }
-        class Database {
-            +GuardarTransacción()
-        }
+    <div class="mermaid">
+      classDiagram Client --> UI : interactúa UI --> PaymentController : envía
+      solicitudes de pago PaymentController --> PaymentService : delega lógica
+      de negocio PaymentService --> PaymentProcessor : procesa el pago
+      PaymentProcessor --> BankAPI : comunica con banco PaymentProcessor -->
+      ExternalPaymentAPI : comunica con procesador externo PaymentProcessor -->
+      FraudDetectionService : verifica fraude PaymentService --> Database :
+      guarda información de transacción class Client { +RealizaCompra() } class
+      UI { +MostrarFormularioDePago() +MostrarResultado() } class
+      PaymentController { +IniciarPago() +ConfirmarPago() } class PaymentService
+      { +ValidarPago() +ProcesarPago() +GuardarTransacción() } class
+      PaymentProcessor { +AutorizarPago() +ProcesarConBanco()
+      +ProcesarConProcesadorExterno() +VerificarFraude() } class BankAPI {
+      +AutorizarPago() } class ExternalPaymentAPI { +AutorizarPago() } class
+      FraudDetectionService { +VerificarFraude() } class Database {
+      +GuardarTransacción() }
     </div>
-</body>
+  </body>
 </html>
