@@ -38,21 +38,51 @@
     payment transaction information.-->
 
     <div class="mermaid">
-      classDiagram Client --> UI : interactúa UI --> PaymentController : envía
-      solicitudes de pago PaymentController --> PaymentService : delega lógica
-      de negocio PaymentService --> PaymentProcessor : procesa el pago
-      PaymentProcessor --> BankAPI : comunica con banco PaymentProcessor -->
-      ExternalPaymentAPI : comunica con procesador externo PaymentProcessor -->
-      FraudDetectionService : verifica fraude PaymentService --> Database :
-      guarda información de transacción class Client { +RealizaCompra() } class
-      UI { +MostrarFormularioDePago() +MostrarResultado() } class
-      PaymentController { +IniciarPago() +ConfirmarPago() } class PaymentService
-      { +ValidarPago() +ProcesarPago() +GuardarTransacción() } class
-      PaymentProcessor { +AutorizarPago() +ProcesarConBanco()
-      +ProcesarConProcesadorExterno() +VerificarFraude() } class BankAPI {
-      +AutorizarPago() } class ExternalPaymentAPI { +AutorizarPago() } class
-      FraudDetectionService { +VerificarFraude() } class Database {
-      +GuardarTransacción() }
+      classDiagram
+      Client --> UI : interactúa
+      UI --> PaymentController : envía solicitudes de pago
+      PaymentController --> PaymentService : delega lógica de negocio
+      PaymentService --> PaymentProcessor : procesa el pago
+      PaymentProcessor --> BankAPI : comunica con banco
+      PaymentProcessor --> ExternalPaymentAPI : comunica con procesador externo
+      PaymentProcessor --> FraudDetectionService : verifica fraude
+      PaymentService --> Database : guarda información de transacción
+    
+      class Client {
+        +RealizaCompra()
+      }
+      class UI {
+        +MostrarFormularioDePago()
+        +MostrarResultado()
+      }
+      class PaymentController {
+        +IniciarPago()
+        +ConfirmarPago()
+      }
+      class PaymentService {
+        +ValidarPago()
+        +ProcesarPago()
+        +GuardarTransacción()
+      }
+      class PaymentProcessor {
+        +AutorizarPago()
+        +ProcesarConBanco()
+        +ProcesarConProcesadorExterno()
+        +VerificarFraude()
+      }
+      class BankAPI {
+        +AutorizarPago()
+      }
+      class ExternalPaymentAPI {
+        +AutorizarPago()
+      }
+      class FraudDetectionService {
+        +VerificarFraude()
+      }
+      class Database {
+        +GuardarTransacción()
+      }
+    
     </div>
   </body>
 </html>
