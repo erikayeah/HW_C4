@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Transición de Estados de Pasarela de Pago</title>
+</head>
+<body>
+    <h1>Diagrama de Transición de Estados de Pasarela de Pago</h1>
+ 
+    <img src="./images/diagrama_transicion_estado.png" alt="Diagrama de Transición de Estados de Pasarela de Pago">
+
+    <!--
+    Código utilizado en PlantUML para generar el diagrama:
+
+    @startuml
+    state "Inicio" as Start
+    state "Validación de Pago" as ValidatePayment
+    state "Verificación de Fraude" as FraudCheck
+    state "Autorización del Banco" as BankAuthorization
+    state "Procesamiento Exitoso" as Success
+    state "Procesamiento Fallido" as Failure
+    state "Notificación al Cliente" as NotifyClient
+    state "Guardar Transacción" as SaveTransaction
+
+    [*] --&gt; Start
+    Start --&gt; ValidatePayment : Iniciar Transacción
+    ValidatePayment --&gt; FraudCheck : Validar Datos de Pago
+    FraudCheck --&gt; BankAuthorization : Verificar Fraude
+    BankAuthorization --&gt; Success : Autorización Aprobada
+    BankAuthorization --&gt; Failure : Autorización Rechazada
+    Success --&gt; SaveTransaction : Guardar Detalles de Transacción
+    Failure --&gt; NotifyClient : Notificar Error al Cliente
+    SaveTransaction --&gt; NotifyClient : Notificar Éxito al Cliente
+    NotifyClient --&gt; [*]
+    @enduml
+    -->
+    
+</body>
+</html>

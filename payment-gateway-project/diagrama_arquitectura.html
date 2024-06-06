@@ -10,7 +10,28 @@
     </script>
 </head>
 <body>
+
+     <!--
+    Para visualizar este archivo, abre el proyecto en Visual Studio Code.
+    Instala la extensión Live Server si no la tienes instalada.
+    Haz clic derecho en este archivo y selecciona "Open with Live Server".
+    -->
+    
     <h1>Diagrama de Arquitectura de Pasarela de Pago</h1>
+    
+  <!--This code represents a diagram of the architecture of a payment gateway
+  system. It uses the Mermaid library to generate a graph visualization of the
+  different components and their interactions. * * The diagram shows the flow of
+  a payment transaction, starting from the client making a purchase, to the
+  merchant sending the payment data, to the payment gateway encrypting and
+  sending the data to the payment processor, which then communicates with the
+  card network and issuing bank to authorize or reject the transaction. The
+  response is then sent back through the payment processor, payment gateway, and
+  merchant to complete the transaction. * * The diagram also includes styling
+  for the different components, using CSS classes to set the fill color, stroke
+  color, and stroke width of each node in the graph. */
+  -->
+
     <div class="mermaid">
         graph TD
         Client -->|Realiza compra| Merchant

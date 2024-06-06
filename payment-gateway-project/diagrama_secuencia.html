@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Secuencia UML de Pasarela de Pago</title>
+</head>
+<body>
+    <h1>Diagrama de Secuencia UML de Pasarela de Pago</h1>
+    <img src="./images/diagrama_secuencia.png" alt="Diagrama de Secuencia UML de Pasarela de Pago">
+</body>
+</html>
+
+    <!--
+    Código utilizado en PlantUML para generar el diagrama:
+
+    @startuml
+    actor Client
+    participant UI
+    participant PaymentController
+    participant PaymentService
+    participant PaymentProcessor
+    participant BankAPI
+    participant ExternalPaymentAPI
+    participant FraudDetectionService
+    participant Database
+
+    Client -&gt; UI: Inicia la transacción
+    UI -&gt; PaymentController: Envía datos de pago
+    PaymentController -&gt; PaymentService: Valida la solicitud de pago
+    PaymentService -&gt; FraudDetectionService: Verifica el fraude
+    FraudDetectionService --&gt; PaymentService: Respuesta de verificación
+    PaymentService -&gt; PaymentProcessor: Procesa el pago
+    PaymentProcessor -&gt; BankAPI: Solicita autorización al banco
+    BankAPI --&gt; PaymentProcessor: Respuesta de autorización
+
+    alt Autorización rechazada
+        PaymentProcessor --&gt; PaymentService: Pago rechazado
+        PaymentService --&gt; PaymentController: Notificar rechazo
+        PaymentController --&gt; UI: Mostrar error al cliente
+        UI --&gt; Client: Transacción fallida
+    else Autorización aprobada
+        PaymentProcessor -&gt; ExternalPaymentAPI: Procesa con procesador externo
+        ExternalPaymentAPI --&gt; PaymentProcessor: Confirmación de procesamiento
+        PaymentProcessor -&gt; PaymentService: Confirmar pago
+        PaymentService -&gt; Database: Guardar transacción
+        Database --&gt; PaymentService: Confirmar almacenamiento
+        PaymentService --&gt; PaymentController: Notificar éxito
+        PaymentController --&gt; UI: Mostrar éxito al cliente
+        UI --&gt; Client: Transacción exitosa
+    end
+    @enduml
+    -->
